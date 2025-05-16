@@ -33,6 +33,7 @@ The analysis includes:
 - Heatmaps of no-show rate by hour and condition
 - Faceted bar plots by gender, age group, and month
 - Stacked charts showing average wait time by chronic condition
+- Line chart of No show rate by month
 - Summary tables exported to Excel
 
 
