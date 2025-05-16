@@ -87,7 +87,7 @@ appointments <- appointments %>%
       
       age >= 80 ~ "80+"))
 
-## 1. No-show Rates by hour, chronic condition and Month
+## RESEARCH 1: NO-SHOW RATES BY HOUR, CHRONIC CONDITIONS AND MONTH 
 #Step 1: Ensure condition_group is created safely
 
 library(dplyr)
@@ -151,8 +151,7 @@ ggplot(hourly_noshow_summary, aes(x = appointment_hour, y = condition_group, fil
 
 
 
-## 2.Monthly Differences in No- show rates across age groups and sexes
-
+## RESARCH 2- MONTHLY DIFFERENCES IN NO- SHOW RATES ACROSS AGE GROUPS AND SEXES
 
 monthly_age_sex <- appointments %>%
   group_by(month, age_group, gender) %>%
@@ -164,7 +163,7 @@ monthly_age_sex <- appointments %>%
   )
 
 
-## 2-Column (Gender) x 3-Row (Month) Grid
+# step 2: 2-Column (Gender) x 3-Row (Month) Grid
 
 ggplot(monthly_age_sex, aes(x = age_group, y = no_show_rate, fill = gender)) +
   geom_col(width = 0.8) +
@@ -192,7 +191,7 @@ ggplot(monthly_age_sex, aes(x = age_group, y = no_show_rate, fill = gender)) +
 
 
 
-##3. Average Scheduling delay by month and chronic condition
+##RESEARCH 3- AVERAGE SCHEDULING DELAY BY MONTH AND CHRONIC CONDITION 
 
 
 avg_wait_month_cond <- appointments %>%
@@ -201,7 +200,7 @@ avg_wait_month_cond <- appointments %>%
     avg_wait_days = mean(wait_days, na.rm = TRUE),
     .groups = "drop"
   )
-
+#step2: Visualization
 library(ggplot2)
 
 ggplot(avg_wait_month_cond, aes(x = month, y = avg_wait_days, fill = condition_group)) +
@@ -224,9 +223,9 @@ ggplot(avg_wait_month_cond, aes(x = month, y = avg_wait_days, fill = condition_g
     strip.text = element_text(face = "bold", size = 12)
   )
 
-## 4 Average scheduling delay by age, gender, condition and month
+## RESEARCH 4: AVERAGE SCHEDULING DELAY BY AGE, GENDER, CONDITION AND MONTH 
 
-# Aggregate: average wait by month, gender,condition and age group
+# Step 1: Aggregate: average wait by month, gender,condition and age group
 
 wait_stacked <- appointments %>%
   group_by(month, gender, age_group, condition_group) %>%
@@ -235,7 +234,7 @@ wait_stacked <- appointments %>%
     .groups = "drop"
   )
 
-# Plot - Stacked Bar by condition group, facet by gender (columns) and month (rows)
+# Step 2: Plot - Stacked Bar by condition group, facet by gender (columns) and month (rows)
 ggplot(wait_stacked, aes(x = age_group, y = avg_wait_days, fill = condition_group)) +
   geom_col(position = "stack", width = 0.8) +
   facet_grid(rows = vars(month), cols = vars(gender)) +
@@ -255,9 +254,7 @@ ggplot(wait_stacked, aes(x = age_group, y = avg_wait_days, fill = condition_grou
   )
 
 
-
-
-##Download all the excel sheets into one excel file
+##DOWNLOAD ALL THE EXCEL SHEETS INTO ONE EXCEL FILE
 all_outputs <- list(
   "NoShow_by_Hour_Condition_Month" = hourly_noshow_summary,
   "Monthly_NoShow_by_Age_Gender" = monthly_age_sex,
