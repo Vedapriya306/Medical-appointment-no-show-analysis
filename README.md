@@ -1,5 +1,3 @@
-# Medical Appointments No-Show Analysis
-
 # 📊 Medical Appointments - No-Show Analysis
 
 This project analyzes a real-world dataset from medical appointments in Brazil to explore **factors influencing patient no-shows**. The goal is to uncover patterns in missed appointments and assess the effectiveness of interventions like SMS reminders, with the aim of improving operational efficiency and patient adherence.
