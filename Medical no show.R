@@ -33,7 +33,7 @@ appointments <- appointments %>%
   )
 
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
   
 #What is the time range of the dataset? ANS: April 20th to June 8th, 2016
 appointments %>%
@@ -80,7 +80,7 @@ appointments <- appointments %>%
   mutate(
     no_show_flag = ifelse(no_show == "Yes", 1, 0)
   )
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 #RESEARCH 1: Overall summary tables 
   
 library(dplyr)
@@ -129,7 +129,7 @@ final_summary <- bind_rows(overall_summary, monthly_summary,repeat_stats)
 # View
 print(final_summary)
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 ## RESEARCH 2: NO - SHOW ANALYSIS OVER THE MONTHS
 
@@ -169,7 +169,7 @@ ggplot(monthly_noshow_summary, aes(x = month, y = no_show_rate, group = 1)) +
     plot.title = element_text(face = "bold")
   )
 
-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 ## RESEARCH 3. No-show Rates by hour, chronic condition and Month
 #Step 1: Ensure condition_group is created safely
@@ -232,7 +232,7 @@ ggplot(hourly_noshow_summary, aes(x = appointment_hour, y = condition_group, fil
     axis.text.x = element_text(angle = 45, hjust = 1),
     panel.grid = element_blank()
   )
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 ## RESEARCH 4.Monthly Differences in No- show rates across age groups and sexes
 
@@ -273,7 +273,7 @@ ggplot(monthly_age_sex, aes(x = age_group, y = no_show_rate, fill = gender)) +
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 ##RESEARCH 5. Average Scheduling delay by month and chronic condition
 
@@ -307,7 +307,7 @@ ggplot(avg_wait_month_cond, aes(x = month, y = avg_wait_days, fill = condition_g
     strip.text = element_text(face = "bold", size = 12)
   )
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 
 ## RESEARCH 6 Average scheduling delay by age, gender, condition and month
 
@@ -340,7 +340,7 @@ ggplot(wait_stacked, aes(x = age_group, y = avg_wait_days, fill = condition_grou
   )
 
 
-------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------
 #RESEARCH 7: Which age groups and genders are more likely to miss appointments even after receiving SMS reminders?
   sms_noshow_demo <- appointments %>%
   group_by(age_group, gender, sms_received) %>%
@@ -377,7 +377,7 @@ ggplot(sms_noshow_demo, aes(x = age_group, y = no_show_rate, fill = factor(sms_r
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 ## RESEARCH 8: What are the no-show patterns among patients with multiple appointments over the months?
 #Are repeat no showers more likely to miss again , and does this pattern change over time?
   
@@ -434,7 +434,7 @@ ggplot(frequency_noshow, aes(x = freq_group, y = no_show_rate, fill = freq_group
   theme_minimal() +
   theme(legend.position = "none")
 
-----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
   
 #RESEARCH 9: Temporal Trends- Repeat patient trends across months
   
@@ -470,7 +470,7 @@ ggplot(monthly_repeat_noshow, aes(x = month, y = no_show_rate, group = 1)) +
     plot.title = element_text(face = "bold")
   )
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 #RESEARCH 10: Patient Typing- Stacked Bar
   
   # Already created `patient_type`
@@ -496,7 +496,7 @@ ggplot(monthly_ptype_noshow, aes(x = month, y = percent, fill = freq_group)) +
     fill = "freq_group"
   ) +
   theme_minimal()
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
   
 #RESEARCH 11: Demographic Interaction -Gender and Age
   repeat_demo <- appointments %>% filter(total_appts > 1)
@@ -521,7 +521,7 @@ ggplot(repeat_demo_summary, aes(x = age_group, y = no_show_rate, fill = gender))
   ) +
   theme_minimal()
 
---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
   
 #RESEARCH 12: Intervention Response-SMS IMpact by frequency
   sms_effectiveness <- appointments %>%
@@ -550,7 +550,7 @@ ggplot(sms_effectiveness, aes(x = freq_group, y = no_show_rate, fill = sms_recei
   ) +
   theme_minimal()
 
-----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
   
 #RESEARCH 13: CONDITION- SPECIFIC BEHAVIOUR- CHRONIC +FREQUENT =HIGHER RISK? 
   
@@ -583,7 +583,7 @@ ggplot(condition_behavior, aes(x = freq_group, y = no_show_rate, fill = chronic_
     fill = "Condition"
   ) +
   theme_minimal()
----------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
   
 #RESEARCH 14: PREDICTIVE MODELING- LOGISTIC REGRESSION
   
@@ -606,7 +606,7 @@ logit_model <- glm(
 
 summary(logit_model)
 
--------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------
   
   # Load required package
   library(writexl)
